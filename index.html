@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/8e80f4d4e9.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="src/style.css" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col main">
+          <div class="main-city">
+            <form class="search-bar" id="city-search">
+              <div class="container-search">
+                <input
+                  type="text"
+                  placeholder="Type your city"
+                  autofocus="off"
+                  autocomplete="off"
+                  id="city-input"
+                  class="search-input"
+                />
+                <button type="submit" class="search-button">Search</button>
+              </div>
+            </form>
+            <h1 id="main-city">
+              Balneário Camboriú
+              <!-- <i
+                class="fa-solid fa-chevron-down city-selector"
+                id="click-open"
+              ></i> -->
+            </h1>
+          </div>
+          <h2 class="date" id="current-date">Thu 9:04pm</h2>
+
+          <i class="fa-solid fa-wind main-icon"></i>
+          <h2 class="current-temp" id="current-temp">0°</h2>
+          <h3 class="current-weather">Wind</h3>
+        </div>
+        <div class="col next-days">
+          <div class="card">
+            <div class="card-body">
+              <div class="row g-0">
+                <div class="col-md-4 text-center" id="card-today">Today</div>
+                <div class="col-md-4 text-center">19°/<small>11°</small></div>
+                <div class="col-md-4 text-center">
+                  <i class="fa-solid fa-cloud-sun"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="row g-0">
+                <div class="col-md-4 text-center" id="card-tomorrow">Tomr</div>
+                <div class="col-md-4 text-center">19°/<small>12°</small></div>
+                <div class="col-md-4 text-center">
+                  <i class="fa-solid fa-cloud-sun"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="row g-0">
+                <div class="col-md-4 text-center" id="card-three">Day 3</div>
+                <div class="col-md-4 text-center">22°/<small>13°</small></div>
+                <div class="col-md-4 text-center">
+                  <i class="fa-solid fa-cloud-sun"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="row g-0">
+                <div class="col-md-4 text-center" id="card-four">Day 4</div>
+                <div class="col-md-4 text-center">19°/<small>13°</small></div>
+                <div class="col-md-4 text-center">
+                  <i class="fa-solid fa-cloud"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="row g-0">
+                <div class="col-md-4 text-center" id="card-five">Day 5</div>
+                <div class="col-md-4 text-center">16°/<small>13°</small></div>
+                <div class="col-md-4 text-center">
+                  <i class="fa-solid fa-cloud-showers-heavy"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="src/index.js"></script>
+</html>
