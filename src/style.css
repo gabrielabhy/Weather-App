@@ -106,3 +106,15 @@ small {
   border: 0px #919c9d;
   cursor: pointer;
 }
+
+.footnote {
+  font-size: 12px;
+  text-align: center;
+  color: #919c9d;
+  margin-top: 20px;
+}
+
+a {
+  color: #4b4746;
+  text-decoration: none;
+}
