@@ -18,17 +18,7 @@ small {
 .main-city {
   display: block;
   margin: 0 auto;
-  padding-left: 30px;
-}
-
-.city-selector {
-  padding: 5px;
-  font-size: 28px;
-  color: #4b4746;
-}
-
-.city-selector:hover {
-  cursor: pointer;
+  text-transform: capitalize;
 }
 
 .container-search {
