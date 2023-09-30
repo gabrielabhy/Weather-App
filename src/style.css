@@ -71,6 +71,7 @@ small {
 
 .current-temp {
   font-size: 52px;
+  padding-left: 15px;
 }
 
 .current-weather {

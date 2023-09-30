@@ -1,60 +1,57 @@
-let now = new Date();
-let dayOfWeek = now.getDay();
-let currentHour = now.getHours();
-let currentMinutes = now.getMinutes();
-let weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-let date = document.querySelector("#current-date");
-date.innerHTML = `${weekDays[dayOfWeek]} ${currentHour}:${currentMinutes}`;
-
-let cardToday = document.querySelector("#card-today");
-cardToday.innerHTML = weekDays[dayOfWeek];
-
-let cardTomorrow = document.querySelector("#card-tomorrow");
-let tomorrow = (dayOfWeek + 1) % 7;
-cardTomorrow.innerHTML = weekDays[tomorrow];
-
-let cardThree = document.querySelector("#card-three");
-let dayThree = (dayOfWeek + 2) % 7;
-cardThree.innerHTML = weekDays[dayThree];
-
-let cardFour = document.querySelector("#card-four");
-let dayFour = (dayOfWeek + 3) % 7;
-cardFour.innerHTML = weekDays[dayFour];
-
-let cardFive = document.querySelector("#card-five");
-let dayFive = (dayOfWeek + 4) % 7;
-cardFive.innerHTML = weekDays[dayFive];
-
-function userCity(event) {
-  event.preventDefault();
-  let cityInput = document.querySelector("#city-input").value;
-  let mainCity = document.querySelector("#main-city");
-  mainCity.innerHTML = cityInput;
-
-  let apiKey = "bc2cd97eaa209e7d22d8f3c84081655f";
-  let units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=${apiKey}&units=${units}`;
-
-  axios.get(apiUrl).then(function (response) {
-    showTemperature(response);
-    currentWeather(response);
-  });
+function formatDate(timestamp) {
+  let now = new Date(timestamp);
+  let dayOfWeek = now.getDay();
+  let currentHour = now.getHours();
+   if (currentHour < 10) {
+     currentHour = `0${currentHour}`;
+   }
+  let currentMinutes = now.getMinutes();
+  if (currentMinutes < 10) {
+    currentMinutes = `0${currentMinutes}`;
+  }
+  let weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return `${weekDays[dayOfWeek]} ${currentHour}:${currentMinutes}`;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  let searchCity = document.querySelector("#city-search");
-  searchCity.addEventListener("submit", userCity);
-});
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
 
 function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#current-temp");
+  let currentWeather = document.querySelector("#current-weather");
+
   currentTemp.innerHTML = `${temperature}°`;
+  currentWeather.innerHTML = response.data.weather[0].main;
 }
 
-function currentWeather(response) {
-  let weatherNow = response.data.weather[0].main;
-  let currentWeather = document.querySelector("#current-weather");
-  currentWeather.innerHTML = weatherNow;
+function search(city) {
+  let apiKey = "bc2cd97eaa209e7d22d8f3c84081655f";
+  let units = "metric";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+
+  axios
+    .get(apiUrl)
+    .then(showTemperature)
+    .catch(function (error) {
+      console.error("Error:", error);
+    });
 }
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#city-input").value;
+  let mainCity = document.querySelector("#main-city");
+  mainCity.innerHTML = cityInput;
+  search(cityInput);
+}
+
+let searchCity = document.querySelector("#city-search");
+searchCity.addEventListener("submit", handleSubmit);
+
+// Initial search for a default city
+search("São Paulo");
