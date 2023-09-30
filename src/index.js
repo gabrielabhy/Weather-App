@@ -36,7 +36,10 @@ function userCity(event) {
   let units = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=${apiKey}&units=${units}`;
 
-  axios.get(apiUrl).then(showTemperature);
+  axios.get(apiUrl).then(function (response) {
+    showTemperature(response);
+    currentWeather(response);
+  });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -48,4 +51,10 @@ function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#current-temp");
   currentTemp.innerHTML = `${temperature}°`;
+}
+
+function currentWeather(response) {
+  let weatherNow = response.data.weather[0].main;
+  let currentWeather = document.querySelector("#current-weather");
+  currentWeather.innerHTML = weatherNow;
 }
