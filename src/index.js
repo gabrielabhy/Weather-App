@@ -14,6 +14,18 @@ function formatDate(timestamp) {
   return `${weekDays[dayOfWeek]} ${currentHour}:${currentMinutes}`;
 }
 
+const customIcons = {
+  "clear sky": "clear-day.svg",
+  "few clouds": "sun-clouds.svg",
+  "scattered clouds": "cloud.svg",
+  "broken clouds": "cloud.svg",
+  "shower rain": "heavy-rain.svg",
+  rain: "rain.svg",
+  thunderstorm: "thunderstorm.svg",
+  snow: "snow.svg",
+  mist: "smog.svg",
+};
+
 //Current temperature and weather condition
 function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
@@ -30,12 +42,16 @@ function showTemperature(response) {
   currentWeather.innerHTML = response.data.weather[0].main;
 
   let iconElement = document.querySelector("#main-icon");
-  console.log(iconElement);
-  iconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
-  iconElement.setAttribute("alt", response.data.weather[0].description);
+  if (customIcons.hasOwnProperty(currentWeather)) {
+    iconElement.setAttribute("src", `src/icons/${customIcons[currentWeather]}`);
+    iconElement.setAttribute("alt", response.data.weather[0].main);
+  } else {
+    iconElement.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
+    iconElement.setAttribute("alt", response.data.weather[0].description);
+  }
 }
 
 //Search
