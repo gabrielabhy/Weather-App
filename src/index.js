@@ -23,12 +23,19 @@ function showTemperature(response) {
   let timestamp = response.data.dt * 1000;
   let timezone = response.data.timezone;
   let formattedDate = formatDate(timestamp, timezone);
-
   let dateElement = document.querySelector("#current-date");
   dateElement.innerHTML = formattedDate;
 
   let currentWeather = document.querySelector("#current-weather");
   currentWeather.innerHTML = response.data.weather[0].main;
+
+  let iconElement = document.querySelector("#main-icon");
+  console.log(iconElement);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
 //Search
