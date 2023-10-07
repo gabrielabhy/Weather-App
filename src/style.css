@@ -13,6 +13,9 @@ small {
   background-color: #eeebe6;
   border-radius: 10px;
   padding: 30px;
+  /*week 7 homework*/
+  margin: auto;
+  max-width: 700px;
 }
 
 .main-city {
@@ -28,10 +31,12 @@ small {
 }
 
 .search-input {
+  color: #4b4746;
   background-color: #eeebe6;
-  border: solid 2px #919c9d;
+  border: solid 1px #919c9d;
   border-radius: 7px;
   padding: 7px;
+  margin-right: 10px;
   flex-grow: 3;
 }
 
@@ -63,10 +68,9 @@ small {
 }
 
 .main-icon {
-  font-size: 120px;
-  padding: 30px;
-  margin: 20px;
-  margin-bottom: 0px;
+  width: 120px;
+  padding: 10px;
+  margin: 20px 0 20px 0;
 }
 
 .current-temp {
@@ -78,6 +82,7 @@ small {
   font-size: 30px;
 }
 
+/*
 .next-days {
   padding: 30px;
 }
@@ -97,6 +102,7 @@ small {
   border: 0px #919c9d;
   cursor: pointer;
 }
+*/
 
 .footnote {
   font-size: 12px;
