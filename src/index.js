@@ -1,3 +1,4 @@
+//Date and timezone
 function formatDate(timestamp) {
   let now = new Date(timestamp);
   let dayOfWeek = now.getDay();
@@ -13,6 +14,7 @@ function formatDate(timestamp) {
   return `${weekDays[dayOfWeek]} ${currentHour}:${currentMinutes}`;
 }
 
+//Current temperature and weather condition
 function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
   let currentTemp = document.querySelector("#current-temp");
@@ -29,6 +31,7 @@ function showTemperature(response) {
   currentWeather.innerHTML = response.data.weather[0].main;
 }
 
+//Search
 function search(city) {
   let apiKey = "bc2cd97eaa209e7d22d8f3c84081655f";
   let units = "metric";
@@ -42,6 +45,7 @@ function search(city) {
     });
 }
 
+// Submit
 function handleSubmit(event) {
   event.preventDefault();
   let cityInput = document.querySelector("#city-input").value;
@@ -53,5 +57,5 @@ function handleSubmit(event) {
 let searchCity = document.querySelector("#city-search");
 searchCity.addEventListener("submit", handleSubmit);
 
-// Initial search for a default city
+// Initial search
 search("São Paulo");
