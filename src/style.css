@@ -4,10 +4,6 @@ body {
   color: #4b4746;
 }
 
-small {
-  font-size: 14px;
-}
-
 .main {
   text-align: center;
   background-color: #eeebe6;
@@ -36,23 +32,24 @@ small {
   border: solid 1px #919c9d;
   border-radius: 7px;
   padding: 7px;
-  margin-right: 10px;
-  flex-grow: 3;
+  margin-right: 5px;
+  flex-grow: 5;
 }
 
 .search-input:focus {
   border: #4b4746;
+  box-shadow: 5px 5px 15px rgb(223, 223, 223);
 }
 
 .search-button {
   color: #4b4746;
-  font-size: 16px;
+  font-size: 18px;
   margin: 0px auto;
+  margin-right: 5px;
   display: block;
   background-color: #eeebe6;
   border: 1px solid #919c9d;
   border-radius: 7px;
-  box-shadow: 5px 5px 15px rgb(223, 223, 223);
   transition: all 150ms ease-in-out;
   flex-grow: 1;
 }
@@ -60,6 +57,25 @@ small {
 .search-button:hover {
   color: #eeebe6;
   background-color: #919c9d;
+  box-shadow: 5px 5px 15px rgb(223, 223, 223);
+}
+
+.current-loc {
+  color: #4b4746;
+  font-size: 18px;
+  margin: 0px auto;
+  display: block;
+  background-color: #eeebe6;
+  border: 1px solid #919c9d;
+  border-radius: 7px;
+  transition: all 150ms ease-in-out;
+  flex-grow: 1;
+}
+
+.current-loc:hover {
+  color: #eeebe6;
+  background-color: #919c9d;
+  box-shadow: 5px 5px 15px rgb(223, 223, 223);
 }
 
 .date {
@@ -80,6 +96,24 @@ small {
 
 .current-weather {
   font-size: 30px;
+}
+
+.weather-condition {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.humidity {
+  margin: 10px 5px 20px 5px;
+  color: #919c9d;
+  font-size: 14px;
+}
+
+.wind {
+  margin: 10px 5px 20px 5px;
+  color: #919c9d;
+  font-size: 14px;
 }
 
 /*
