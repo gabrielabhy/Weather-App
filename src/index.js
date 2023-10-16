@@ -47,7 +47,7 @@ function showTemperature(response) {
   humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
 
   let wind = document.querySelector("#wind");
-  wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
+  wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed * 3.6)} km/h`;
 
   let iconElement = document.querySelector("#main-icon");
   if (customIcons.hasOwnProperty(currentWeather)) {
