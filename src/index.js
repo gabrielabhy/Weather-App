@@ -41,6 +41,12 @@ function showTemperature(response) {
   let currentWeather = document.querySelector("#current-weather");
   currentWeather.innerHTML = response.data.weather[0].main;
 
+  let humidity = document.querySelector("#humidity");
+  humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
+
+  let wind = document.querySelector("#wind");
+  wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
+
   let iconElement = document.querySelector("#main-icon");
   if (customIcons.hasOwnProperty(currentWeather)) {
     iconElement.setAttribute("src", `src/icons/${customIcons[currentWeather]}`);
