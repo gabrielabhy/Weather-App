@@ -28,9 +28,9 @@ const customIcons = {
 
 //Current temperature and weather condition
 function showTemperature(response) {
-  let temperature = Math.round(response.data.main.temp);
+  let celsiusTemperature = response.data.main.temp;
   let currentTemp = document.querySelector("#current-temp");
-  currentTemp.innerHTML = `${temperature}°`;
+  currentTemp.innerHTML = Math.round(celsiusTemperature);
 
   let timestamp = response.data.dt * 1000;
   let timezone = response.data.timezone;
@@ -83,8 +83,33 @@ function handleSubmit(event) {
   search(cityInput);
 }
 
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let currentTemp = document.querySelector("#temperature");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  currentTemp.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+  let currentTemp = document.querySelector("#temperature");
+  currentTemp.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
 let searchCity = document.querySelector("#city-search");
 searchCity.addEventListener("submit", handleSubmit);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 // Initial search
 search("São Paulo");

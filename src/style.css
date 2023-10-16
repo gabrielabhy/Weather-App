@@ -89,9 +89,21 @@ body {
   margin: 20px 0 20px 0;
 }
 
+.temperature {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.units {
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
 .current-temp {
   font-size: 52px;
-  padding-left: 15px;
+  padding-left: 25px;
 }
 
 .current-weather {
