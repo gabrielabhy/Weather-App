@@ -26,9 +26,11 @@ const customIcons = {
   mist: "smog.svg",
 };
 
+let celsiusTemperature = null;
+
 //Current temperature and weather condition
 function showTemperature(response) {
-  let celsiusTemperature = response.data.main.temp;
+  celsiusTemperature = response.data.main.temp;
   let currentTemp = document.querySelector("#current-temp");
   currentTemp.innerHTML = Math.round(celsiusTemperature);
 
@@ -99,8 +101,6 @@ function displayCelsiusTemperature(event) {
   let currentTemp = document.querySelector("#temperature");
   currentTemp.innerHTML = Math.round(celsiusTemperature);
 }
-
-let celsiusTemperature = null;
 
 let searchCity = document.querySelector("#city-search");
 searchCity.addEventListener("submit", handleSubmit);
