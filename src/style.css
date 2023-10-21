@@ -128,9 +128,10 @@ body {
   font-size: 14px;
 }
 
-/*
-.next-days {
-  padding: 30px;
+.forecast {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .card {
@@ -148,7 +149,6 @@ body {
   border: 0px #919c9d;
   cursor: pointer;
 }
-*/
 
 .footnote {
   font-size: 12px;
