@@ -85,6 +85,7 @@ function handleSubmit(event) {
   search(cityInput);
 }
 
+//Celcius and Fahrenheit conversion
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
   celsiusLink.classList.remove("active");
@@ -102,6 +103,31 @@ function displayCelsiusTemperature(event) {
   currentTemp.innerHTML = Math.round(celsiusTemperature);
 }
 
+function displayForecast() {
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+  let forecastHtml = "";
+
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `
+        <div class="forecast-day">
+          <div class="forecast-date">${day}</div>
+          <div class="forecast-icon">🌤️</div>
+          <div class="forecast-temperatures">
+            <div class="forecast-temperature">
+              <strong>15º</strong>
+            </div>
+            <div class="forecast-temperature">9º</div>
+          </div>
+        </div>
+      `;
+  });
+
+  let forecastElement = document.querySelector("#next-days");
+  forecastElement.innerHTML = forecastHtml;
+}
+
 let searchCity = document.querySelector("#city-search");
 searchCity.addEventListener("submit", handleSubmit);
 
@@ -113,3 +139,4 @@ celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 // Initial search
 search("São Paulo");
+displayForecast();
