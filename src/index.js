@@ -14,60 +14,38 @@ function formatDate(timestamp) {
   return `${weekDays[dayOfWeek]} ${currentHour}:${currentMinutes}`;
 }
 
-const customIcons = {
-  "clear sky": "clear-day.svg",
-  "few clouds": "sun-clouds.svg",
-  "scattered clouds": "cloud.svg",
-  "broken clouds": "cloud.svg",
-  "shower rain": "heavy-rain.svg",
-  rain: "rain.svg",
-  thunderstorm: "thunderstorm.svg",
-  snow: "snow.svg",
-  mist: "smog.svg",
-};
-
 let celsiusTemperature = null;
 
 //Current temperature and weather condition
 function showTemperature(response) {
-  celsiusTemperature = response.data.main.temp;
+  celsiusTemperature = response.data.temperature.current;
   let currentTemp = document.querySelector("#current-temp");
   currentTemp.innerHTML = Math.round(celsiusTemperature);
 
-  let timestamp = response.data.dt * 1000;
-  let timezone = response.data.timezone;
-  let formattedDate = formatDate(timestamp, timezone);
+  let timestamp = response.data.time * 1000;
+  let formattedDate = formatDate(timestamp);
   let dateElement = document.querySelector("#current-date");
   dateElement.innerHTML = formattedDate;
 
   let currentWeather = document.querySelector("#current-weather");
-  currentWeather.innerHTML = response.data.weather[0].main;
+  currentWeather.innerHTML = response.data.condition.description;
 
   let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
+  humidity.innerHTML = `Humidity: ${response.data.temperature.humidity}%`;
 
   let wind = document.querySelector("#wind");
   wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed * 3.6)} km/h`;
 
   let iconElement = document.querySelector("#main-icon");
-  if (customIcons.hasOwnProperty(currentWeather)) {
-    iconElement.setAttribute("src", `src/icons/${customIcons[currentWeather]}`);
-    iconElement.setAttribute("alt", response.data.weather[0].main);
-  } else {
-    iconElement.setAttribute(
-      "src",
-      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-    );
-    iconElement.setAttribute("alt", response.data.weather[0].description);
-  }
+  iconElement.setAttribute("src",`${response.data.condition.icon_url}`);
 }
 
 //Search
 function search(city) {
-  let apiKey = "bc2cd97eaa209e7d22d8f3c84081655f";
-  let units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  let apiKey = "1ed039bb5aff4d1bc9cc5ao633ta3438";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
+  console.log(apiUrl);
   axios
     .get(apiUrl)
     .then(showTemperature)
@@ -101,6 +79,13 @@ function displayCelsiusTemperature(event) {
   celsiusLink.classList.add("active");
   let currentTemp = document.querySelector("#current-temp");
   currentTemp.innerHTML = Math.round(celsiusTemperature);
+}
+
+//Forecast
+function getForecast(city) {
+  let apiKey = "1ed039bb5aff4d1bc9cc5ao633ta3438";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios(apiUrl).then(displayForecast);
 }
 
 function displayForecast() {
@@ -138,5 +123,5 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 // Initial search
-search("São Paulo");
+search("Florianopolis");
 displayForecast();
