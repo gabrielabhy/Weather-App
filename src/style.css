@@ -4,13 +4,19 @@ body {
   color: #4b4746;
 }
 
-.main {
+.main-body {
+  display: flex;
+  justify-content: center;
+}
+
+.current {
   text-align: center;
   background-color: #eeebe6;
   border-radius: 10px;
   padding: 30px;
-  margin: auto;
-  max-width: 600px;
+  margin: 0;
+  min-width: 400px;
+  max-width: 800px;
 }
 
 .main-city {
@@ -110,14 +116,13 @@ body {
   font-size: 14px;
 }
 
-.next-days{
+.next-days {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 400px;
-  margin: 0 20px 0 5px;
+  max-width: 300px;
+  margin: 0 20px;
   padding-left: 0;
-
 }
 
 .forecast-day {
@@ -142,16 +147,16 @@ body {
   cursor: pointer;
 }
 
-.forecast-icon{
+.forecast-icon {
   width: 50px;
 }
 
-.forecast-temperatures{
+.forecast-temperatures {
   display: flex;
   flex-direction: row;
 }
 
-.forecast-temperature{
+.forecast-temperature {
   padding: 0 10px 0 0;
 }
 
