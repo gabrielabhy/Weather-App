@@ -89,6 +89,7 @@ body {
 
 .current-weather {
   font-size: 30px;
+  text-transform: capitalize;
 }
 
 .weather-condition {
@@ -114,6 +115,7 @@ body {
   flex-direction: column;
   justify-content: center;
   max-width: 400px;
+  margin: 0 20px 0 5px;
   padding-left: 0;
 
 }
