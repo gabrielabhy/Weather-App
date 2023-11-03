@@ -14,9 +14,9 @@ function formatDate(timestamp) {
   return `${weekDays[dayOfWeek]} ${currentHour}:${currentMinutes}`;
 }
 
+//Current temperature and weather condition
 let celsiusTemperature = null;
 
-//Current temperature and weather condition
 function showTemperature(response) {
   celsiusTemperature = response.data.temperature.current;
   let currentTemp = document.querySelector("#current-temp");
@@ -37,7 +37,9 @@ function showTemperature(response) {
   wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed * 3.6)} km/h`;
 
   let iconElement = document.querySelector("#main-icon");
-  iconElement.setAttribute("src",`${response.data.condition.icon_url}`);
+  iconElement.setAttribute("src", `${response.data.condition.icon_url}`);
+
+  getForecast(response.data.city);
 }
 
 //Search
@@ -82,31 +84,44 @@ function displayCelsiusTemperature(event) {
 }
 
 //Forecast
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
 function getForecast(city) {
   let apiKey = "1ed039bb5aff4d1bc9cc5ao633ta3438";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
   axios(apiUrl).then(displayForecast);
 }
 
-function displayForecast() {
-  let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+function displayForecast(response) {
   let forecastHtml = "";
 
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `
-        <div class="forecast-day">
-          <div class="forecast-date">${day}</div>
-          <div class="forecast-icon">🌤️</div>
-          <div class="forecast-temperatures">
-            <div class="forecast-temperature">
-              <strong>15º</strong>
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml =
+        forecastHtml +
+        `
+          <div class="forecast-day">
+            <div class="forecast-date">${formatDay(day.time)}</div>
+            <div>
+              <img class="forecast-icon" src="${day.condition.icon_url}"/>
             </div>
-            <div class="forecast-temperature">9º</div>
+            <div class="forecast-temperatures">
+              <div class="forecast-temperature">
+                <strong>${Math.round(day.temperature.maximum)}°</strong>
+              </div>
+              <div class="forecast-temperature">
+              ${Math.round(day.temperature.minimum)}°
+              </div>
+            </div>
           </div>
-        </div>
-      `;
+        `;
+      }
   });
 
   let forecastElement = document.querySelector("#next-days");
@@ -124,4 +139,3 @@ celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 // Initial search
 search("Florianopolis");
-displayForecast();

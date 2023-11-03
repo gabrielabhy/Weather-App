@@ -124,7 +124,7 @@ body {
   align-items: center;
   justify-content: space-around;
   font-size: 20px;
-  margin: 15px 0;
+  margin: 10px 0;
   padding: 15px 0;
   color: #4b4746;
   background-color: #f4f2ef;
@@ -138,6 +138,10 @@ body {
   color: #f4f2ef;
   border: 0px #919c9d;
   cursor: pointer;
+}
+
+.forecast-icon{
+  width: 50px;
 }
 
 .forecast-temperatures{
